@@ -1,5 +1,6 @@
 owncloud:
-  build: .
+  # build: .
+  image: webwurst/owncloud
   expose:
    - "80"
   volumes:
@@ -23,8 +24,7 @@ mysql:
    - docker_volumes/mysql:/var/lib/mysql
 
 haproxy:
-#  image: tutum/haproxy
-  image: haproxy-confd
+  image: webwurst/haproxy-confd
   ports:
     - "443:443"
     - "80:80"
@@ -40,11 +40,7 @@ etcd:
   ports:
     - "4001:4001"
     - "7001:7001"
-  # command: /opt/etcd/bin/etcd -discovery https://discovery.etcd.io/fc9c7e8433b16662c10de2a23ea2a663 -addr 0.0.0.0:4001
-  # command: /opt/etcd/bin/etcd -discovery https://discovery.etcd.io/fc9c7e8433b16662c10de2a23ea2a663 -bind-addr etcd:4001
-  # command: /opt/etcd/bin/etcd -discovery https://discovery.etcd.io/83954b801d881e773cf6746ec288b4cb -addr etcd:4001 -bind-addr 0.0.0.0:4001
-  # command: /opt/etcd/bin/etcd -no-sync -discovery https://discovery.etcd.io/83954b801d881e773cf6746ec288b4cb -addr etcd:4001 -bind-addr 0.0.0.0:4001
-  # command: -discovery https://discovery.etcd.io/83954b801d881e773cf6746ec288b4cb -addr etcd:4001 -bind-addr 0.0.0.0:4001
+  # command: -discovery https://discovery.etcd.io/83954b801d881e773cf6746ec288b4cb -addr etcd:4001
   command: -addr etcd:4001
 
 # $ fig run haproxy bash
