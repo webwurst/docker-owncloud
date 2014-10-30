@@ -1,4 +1,4 @@
-from apache-php
+from webwurst/apache-php
 
 # dependencies
 run apt-get update && apt-get install -y \
