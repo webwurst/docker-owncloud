@@ -2,26 +2,32 @@ owncloud:
   # build: .
   image: webwurst/owncloud
   expose:
-   - "80"
+    - "80"
+  environment:
+    SERVICE_NAME: owncloud
+    SERVICE_TAGS: owncloud
+    # ETCDCTL_PEERS: http://etcd:4001
   volumes:
-   - docker_volumes/data:/var/www/html/data
+    - docker_volumes/data:/var/www/html/data
 #   - docker_volumes/config:/var/www/html/config
   links:
-   - mysql
-   - etcd
+    - mysql
+    - etcd
 
 mysql:
   image: mysql
   expose:
-   - "3306"
+    - "3306"
   environment:
     MYSQL_DATABASE: owncloud
     MYSQL_USER: owncloud
     MYSQL_PASSWORD: password
     MYSQL_ROOT_PASSWORD: BFPTkyq8IRfP-random
     # MYSQLD_ARGS:
+    SERVICE_NAME: mysql
+    SERVICE_TAGS: db
   volumes:
-   - docker_volumes/mysql:/var/lib/mysql
+    - docker_volumes/mysql:/var/lib/mysql
 
 haproxy:
   image: webwurst/haproxy-confd
@@ -32,6 +38,14 @@ haproxy:
     SSL_CERT:
   links:
     - owncloud
+    - etcd
+
+registrator:
+  image: progrium/registrator
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock
+  command: -internal=true etcd://etcd:4001/services
+  links:
     - etcd
 
 etcd:
