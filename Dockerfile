@@ -7,8 +7,7 @@ RUN apt-get update && apt-get install -y \
 	curl
 
 # owncloud
-#RUN curl -L https://download.owncloud.org/community/daily/owncloud-daily-master.tar.bz2 \
-RUN curl -L --insecure https://download.owncloud.org/community/owncloud-7.0.2.tar.bz2 \
+RUN curl -L --insecure https://download.owncloud.org/community/owncloud-7.0.4.tar.bz2 \
 	| tar -xj -C /var/www/html --strip-components 1
 
 # etcdctl
