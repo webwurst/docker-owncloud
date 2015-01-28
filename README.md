@@ -1,4 +1,4 @@
 docker-owncloud
 ================
 
-Dockerfile for ownCloud 7.0.4
+Dockerfile for [ownCloud](//owncloud.org/)
