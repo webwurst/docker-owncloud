@@ -15,7 +15,7 @@ RUN docker-php-ext-configure gd --with-png-dir=/usr/include/ --with-freetype-dir
   && docker-php-ext-install gd
 
 # owncloud
-RUN curl -L --insecure http://download.owncloud.org/community/testing/owncloud-8.0.0beta2.tar.bz2 \
+RUN curl -L --insecure https://download.owncloud.org/community/owncloud-8.0.3.tar.bz2 \
   | tar -xj -C /var/www/html --strip-components 1
 
 ## calendar

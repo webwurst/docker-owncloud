@@ -1,10 +1,10 @@
 owncloud:
   build: .
-  # image: webwurst/owncloud
+  # image: ndrssmn/owncloud
   ports:
-    - "80:80"
+    - "127.0.0.1:8001:80"
   volumes:
-    - docker_volumes/data:/var/www/html/data
+    - /var/docker_volumes/data:/var/www/html/data
   links:
     - mysql
 
@@ -18,4 +18,4 @@ mysql:
     MYSQL_PASSWORD: password
     MYSQL_ROOT_PASSWORD: BFPTkyq8IRfP-random
   volumes:
-    - docker_volumes/mysql:/var/lib/mysql
+    - /var/docker_volumes/mysql:/var/lib/mysql
