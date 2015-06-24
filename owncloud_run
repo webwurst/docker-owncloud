@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
-#chown daemon /var/www/html -R
-#chown nobody:nogroup /var/www/html -R
 chown www-data /var/www/html -R
 chmod u=rx,go= /var/www/html -R
 chmod u+w /var/www/html/{config,data,apps} -R
 
 exec apache2 -DFOREGROUND
-#exec httpd -DFOREGROUND

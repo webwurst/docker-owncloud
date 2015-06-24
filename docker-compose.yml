@@ -1,10 +1,9 @@
 owncloud:
   build: .
-  # image: ndrssmn/owncloud
   ports:
-    - "127.0.0.1:8001:80"
+    - "8001:80"
   volumes:
-    - /var/docker_volumes/data:/var/www/html/data
+    - docker_volumes/data:/var/www/html/data
   links:
     - mysql
 
@@ -18,4 +17,4 @@ mysql:
     MYSQL_PASSWORD: password
     MYSQL_ROOT_PASSWORD: BFPTkyq8IRfP-random
   volumes:
-    - /var/docker_volumes/mysql:/var/lib/mysql
+    - docker_volumes/mysql:/var/lib/mysql
